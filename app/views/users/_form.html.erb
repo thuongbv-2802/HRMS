@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |u| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= u.label :name %>
+        <%= u.text_field :name, class: "form-control" %>
+
+        <%= u.label :email %>
+        <%= u.email_field :email, class: "form-control" %>
+
+        <%= u.label :password %>
+        <%= u.password_field :password, class: "form-control" %>
+
+        <%= u.label :password_confirmation, "Confirmation" %>
+        <%= u.password_field :password_confirmation, class:"form-control" %>
+
+        <%= u.label :home_town %>
+        <%= u.text_field :home_town, class: "form-control" %>
+
+        <%= u.label :phone %>
+        <%= u.number_field :phone, class: "form-control" %>
+
+        <%= u.label :date_birth %>
+        <%= u.date_field :date_birth, class: "form-control" %>
+
+        <%= u.label :position %>
+        <%= u.select :position, options_for_select([['Chose'], ['member'], ['leader'], ['admin']]), class: 'form-control' %>
+
+        <div class="form-check">
+            <%= u.check_box :status, class: "form-check-input" %> 
+            <label class="form-check-label" for="exampleCheck1">Check if employee left</label>
+        </div>
+
+      <%= u.submit "Save", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+</div>

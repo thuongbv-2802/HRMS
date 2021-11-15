@@ -1,5 +1,6 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-sprockets";
+
 
 $gray-light: #777;
 
@@ -32,6 +33,12 @@ body {
     text-decoration: none;
   }
 
+  #myDropdown form input {
+    border: none;
+    background-color: white;
+    padding: 3px 20px;
+  }
+  
   /* footer */
 
 footer {

@@ -1,0 +1,23 @@
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each.with_index(1) do |user, index| %>
+        <tr>
+            <th><%= index %></th>
+            <td><%= link_to user.name, user %></td>
+            <td><%= link_to user.email, user %></td>
+            <td><%= '0'+(user.phone).to_s %></td>
+            <td><%= user.status %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
