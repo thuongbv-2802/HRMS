@@ -6,7 +6,6 @@ class User < ApplicationRecord
     validates :name, presence: true, length: { maximum: 50 }
     validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
     validates :password, presence: true, length: { minimum: 6 }
-    validates :phone, length: {is: 9}
     validates :position, presence: true, inclusion: ['admin', 'leader', 'member']
     validates :status, inclusion: [true, false]
     has_secure_password
@@ -20,6 +19,15 @@ class User < ApplicationRecord
     # Returns a random token.
     def self.new_token
         SecureRandom.urlsafe_base64
+    end
+
+    # Method search 
+    def self.search(param)
+        if param
+            where('name LIKE ?', "%#{param}%")
+        else
+            all
+        end
     end
 
     # Ghi nhớ một người dùng trong cơ sở dữ liệu để sử dụng cho session

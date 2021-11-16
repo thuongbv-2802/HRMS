@@ -10,23 +10,44 @@ User.create!(name:  "Example User",
              password:              "foobar",
              password_confirmation: "foobar",
              home_town: "HA NOI",
-             phone: 987654231,
+             phone: "0987654231",
              date_birth: "15/05/1855",
-             position: "member",
-             status: "0")
+             position: "admin",
+             status: false)
 
-99.times do |n|
+80.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
-  home_town = "HA NOI",
-  phone = 123456754+n+10,
+  home_town = "HA NOI"
+  phone = "0"+(123456754+n+10).to_s
   date_birth = "15/05/2010-#{n}"
   position = "member"
-  status = "0"
-  User.create!(name:  name,
+  status = false
+  User.create!(name: name,
                email: email,
-               password:              password,
+               password: password,
+               password_confirmation: password,
+               home_town: home_town,
+               phone: phone,
+               date_birth: date_birth,
+               position: position,
+               status: status)
+end
+
+
+20.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+200}@railstutorial.org"
+  password = "password"
+  home_town = "HA NOI"
+  phone = "0"+(123456754+n+200).to_s
+  date_birth = "15/05/2010-#{n}"
+  position = "member"
+  status = true
+  User.create!(name: name,
+               email: email,
+               password: password,
                password_confirmation: password,
                home_town: home_town,
                phone: phone,

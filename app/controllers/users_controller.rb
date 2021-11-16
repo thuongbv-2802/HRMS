@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.paginate(page: params[5])
+    @users = User.search(params[:param]).paginate(page: params[:page],  per_page: 30)
   end
 
   def show
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    logged_in_user 
     @user = User.new
   end
 
@@ -39,6 +40,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :home_town, :date_birth, :position, :status)
@@ -55,7 +62,11 @@ class UsersController < ApplicationController
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      unless current_user?(@user) || is_admin(current_user)
+        redirect_to(root_url)
+        # lấy user hiện tại trong cookie
+        flash[:danger] = "Not allow."
+      end
     end
 
 end

@@ -2,6 +2,24 @@
 
 <h1>All users</h1>
 
-<%= will_paginate %>
+
+<%
+=begin%>
+ <form>
+        <select id="template-example">
+        <% @users.each do |u| %>
+        <option value="<%= u.id %>" data-favorite-color="<%= u.name %>"><%= u.name %></option>
+        <% end %>
+      </select>
+</form> 
+<%
+=end%>
+
+<%= will_paginate %> 
+
+<%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag :param %>
+  <%= submit_tag 'Search' %>
+<% end %>
 
 <%= render "users/table" %>

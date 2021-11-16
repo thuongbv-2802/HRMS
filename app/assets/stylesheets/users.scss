@@ -2,13 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+$gray-medium: #bbb;
 /* forms */
 
 input, select {
-    border: 1px solid #bbb;
+    border: 1px solid $gray-medium;
     margin-bottom: 15px;
   }
   
   input {
     height: auto !important;
   }
+
+.hover-shadow:hover {
+  background-color: $gray-medium;
+}

@@ -39,7 +39,7 @@
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-6 col-form-label">Status :</label>
             <div class="col-sm-6">
-                <%= @user.status %>
+                <%= @user.status ? "has left": "presence" %>
             </div>
         </div>
     </div>

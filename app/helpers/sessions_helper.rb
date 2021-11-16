@@ -16,6 +16,11 @@ module SessionsHelper
         user == current_user
     end
 
+    # Returns true if position is admin
+    def is_admin(user)
+        user.position.eql? "admin"
+    end
+
     # Trả về người dùng tương ứng với cookie 
     def current_user
         if (user_id = session[:user_id])

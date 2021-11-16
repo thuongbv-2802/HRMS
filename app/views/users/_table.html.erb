@@ -6,18 +6,21 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
-      <th scope="col">Status</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each.with_index(1) do |user, index| %>
-        <tr>
-            <th><%= index %></th>
-            <td><%= link_to user.name, user %></td>
-            <td><%= link_to user.email, user %></td>
-            <td><%= '0'+(user.phone).to_s %></td>
-            <td><%= user.status %></td>
-        </tr>
+      <tr onclick="location.href='<%= user_path(user.id) %>'" class="hover-shadow" style="color:<% if user.status %>gray<% end %>">
+          <th><%= params[:page]?index + 30*(params[:page].to_i-1):index %></th>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td>
+            <%= link_to "Update", edit_user_path(user.id) %>
+          </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
+
