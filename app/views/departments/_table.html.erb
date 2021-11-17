@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Department</th>
+        <th scope="col">Description</th>
+        <th scope="col">Number of member</th>
+        <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each.with_index(1) do |dept, index| %>
+      <tr class="hover-shadow"  onclick="location.href='users?department=<%= dept.id %>'">
+          <th><%= index %></th>
+          <td><%= dept.name %></td>
+          <td><%= dept.description %></td>
+          <td><%= !(User.find_by(department_id:dept.id))? "0": (User.where(department_id:dept.id)).count %></td>
+          <td style="display: block"><%= link_to "Update", edit_department_path(dept.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

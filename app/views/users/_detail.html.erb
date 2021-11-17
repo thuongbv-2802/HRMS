@@ -19,6 +19,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="staticEmail" class="col-sm-6 col-form-label">Department :</label>
+            <div class="col-sm-6">
+                <%= (Department.find(@user.department_id)).description %>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="staticEmail" class="col-sm-6 col-form-label">Home_town :</label>
             <div class="col-sm-6">
                 <%= @user.home_town %>

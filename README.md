@@ -17,3 +17,20 @@ II. Front-end
 ## DB
 
 https://drive.google.com/file/d/1t0K3Y_zucoBFBulGQF-DHeNdemleZSoJ/view?usp=sharing
+
+## Feature
+
+- Department
+    + update if user is admin
+
+- User
+    + Allow create/update if user is admin/leader
+
+## Bug
+
+- Memem ber can update position 
+
+## Optimization
+
+- click department return all user of that department > Use onclick(href) > User.search(where(dept_id==..))
+

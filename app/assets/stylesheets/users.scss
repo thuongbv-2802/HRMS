@@ -17,3 +17,15 @@ input, select {
 .hover-shadow:hover {
   background-color: $gray-medium;
 }
+
+.input-group{
+  float: right;
+}
+
+.input-group .form-outline{
+  float: left;
+}
+
+.input-group input[type='submit']{
+  float: left;
+}

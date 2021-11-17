@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_093353) do
+ActiveRecord::Schema.define(version: 2021_11_17_035202) do
+
+  create_table "departments", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -24,7 +31,9 @@ ActiveRecord::Schema.define(version: 2021_11_16_093353) do
     t.date "date_birth"
     t.string "position"
     t.boolean "status"
+    t.integer "department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "users", "departments"
 end

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |u| %>
-        <%= render 'shared/error_messages' %>
+        <%= render 'users/error_messages' %>
 
         <%= u.label :name %>
         <%= u.text_field :name, class: "form-control" %>
@@ -15,6 +15,9 @@
         <%= u.label :password_confirmation, "Confirmation" %>
         <%= u.password_field :password_confirmation, class:"form-control" %>
 
+        <%= u.label :department_id %>
+        <%= u.select :department_id, Department.all.collect {|x| [x.description, x.id]}, prompt: "Choose one" %>
+
         <%= u.label :home_town %>
         <%= u.text_field :home_town, class: "form-control" %>
 
@@ -25,7 +28,7 @@
         <%= u.date_field :date_birth, class: "form-control" %>
 
         <%= u.label :position %>
-        <%= u.select :position, options_for_select([['Chose'], ['member'], ['leader'], ['admin']]), class: 'form-control' %>
+        <%= u.select :position, options_for_select(['member','leader','admin']),prompt: "Choose one" %>
 
         <div class="form-check">
             <%= u.check_box :status, class: "form-check-input" %> 

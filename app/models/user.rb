@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    # relation 1-n ,not require
+    belongs_to :departments, optional: true 
     # method getter/setter
     attr_accessor :remember_token
     before_save { email.downcase! }
@@ -8,6 +10,7 @@ class User < ApplicationRecord
     validates :password, presence: true, length: { minimum: 6 }
     validates :position, presence: true, inclusion: ['admin', 'leader', 'member']
     validates :status, inclusion: [true, false]
+    # validates :department_id, presence: true
     has_secure_password
 
     # Trả về thông báo mã băm của chuỗi đã cho.
@@ -21,13 +24,18 @@ class User < ApplicationRecord
         SecureRandom.urlsafe_base64
     end
 
-    # Method search 
-    def self.search(param)
-        if param
-            where('name LIKE ?', "%#{param}%")
+    # Return all record by search name
+    def self.search_name(query)
+        if query
+            where('name LIKE ?', "%#{query}%")
         else
             all
         end
+    end
+
+    # Return record by department_id
+    def self.search_department(department)
+        where('department_id == ?', department)
     end
 
     # Ghi nhớ một người dùng trong cơ sở dữ liệu để sử dụng cho session

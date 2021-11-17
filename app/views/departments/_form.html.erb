@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@department) do |dept| %>
+
+        <%= render 'departments/error_messages' %>
+
+        <%= dept.label :name %>
+        <%= dept.text_field :name, class: "form-control" %>
+
+        <%= dept.label :description %>
+        <%= dept.text_field :description, class: "form-control" %>
+
+      <%= dept.submit "Save", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+</div>

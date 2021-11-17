@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.search(params[:param]).paginate(page: params[:page],  per_page: 30)
+    if params[:department]
+      @users = User.search_department(params[:department]).paginate(page: 1, per_page: 30)
+    else
+      @users = User.search_name(params[:query]).paginate(page: params[:page], per_page: 30)
+    end
   end
 
   def show
@@ -11,18 +15,22 @@ class UsersController < ApplicationController
   end
 
   def new
-    logged_in_user 
+    logged_in_user
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      log_in @user
-      flash[:success] = "Create new user is successfully!"
-      redirect_to @user
+    if is_admin(current_user) || is_leader(current_user) 
+      if @user.save
+        flash[:success] = "Create new user is successfully!"
+        redirect_to @user
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to root_path
+      flash[:danger] = "You must be leader or admin"
     end
   end
 
@@ -32,7 +40,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -48,7 +56,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :home_town, :date_birth, :position, :status)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :home_town, :date_birth, :position, :status, :department_id)
     end
 
     # Confirms a logged-in user.
