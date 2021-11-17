@@ -1,0 +1,16 @@
+<ul class="nav nav-pills mb-3 nav-tabs" >
+  <li class="nav-item">
+   <%= link_to "All users", users_path %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "New", new_user_path %>
+  </li>
+  <li class="nav-item">
+    <%= form_tag(users_path, method: :get, class:"input-group form-search") do %>
+      <div class="form-outline">
+          <%= text_field_tag 'query', params[:query], class: 'form-control' %>
+      </div>
+      <%= submit_tag 'Search', class:"btn btn-primary" %>
+    <% end %>
+  </li>
+</ul>

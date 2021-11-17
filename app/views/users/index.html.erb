@@ -1,14 +1,7 @@
 <% provide(:title, 'HRMS') %>
 
-<h1>All users</h1>
+<%= render "users/header" %>
 
-<%= form_tag(users_path, method: :get, class:"input-group") do %>
-  <div class="form-outline">
-      <%= text_field_tag 'query', params[:query], class: 'form-control' %>
-  </div>
-  <%= submit_tag 'Search', class:"btn btn-primary" %>
-<% end %>
-
-    <%= will_paginate %> 
+<%= will_paginate %> 
 
 <%= render "users/table" %>

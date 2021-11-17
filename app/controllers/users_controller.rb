@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:update]
+  before_action :admin_user, only: [:create, :destroy]
 
   def index
     if params[:department]
@@ -11,35 +12,29 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = find_user
   end
 
   def new
-    logged_in_user
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-    if is_admin(current_user) || is_leader(current_user) 
-      if @user.save
-        flash[:success] = "Create new user is successfully!"
-        redirect_to @user
-      else
-        render 'new'
-      end
+    if @user.save
+      flash[:success] = "Create new user is successfully!"
+      redirect_to @user
     else
-      redirect_to root_path
-      flash[:danger] = "You must be leader or admin"
+      render 'new'
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = find_user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = find_user
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -49,12 +44,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    find_user.destroy
     flash[:success] = "User deleted"
     redirect_to users_url
   end
 
   private
+
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :home_town, :date_birth, :position, :status, :department_id)
     end
@@ -69,12 +65,17 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def correct_user
-      @user = User.find(params[:id])
-      unless current_user?(@user) || is_admin(current_user)
-        redirect_to(root_url)
-        # lấy user hiện tại trong cookie
-        flash[:danger] = "Not allow."
-      end
+      @user = find_user
+      redirect_to(root_url) unless current_user?(@user)
+    end
+
+    # Confirms an admin user.
+    def admin_user
+      redirect_to(root_url) unless is_admin(current_user)
+    end
+
+    def find_user
+      User.find(params[:id])
     end
 
 end

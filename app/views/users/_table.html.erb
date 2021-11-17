@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @users.each.with_index(1) do |user, index| %>
-      <tr onclick="location.href='<%= user_path(user.id) %>'" class="hover-shadow" style="color:<% if user.status %>gray<% end %>">
+      <tr onclick="location.href='<%= user_path(user.id) %>'" class="hover-shadow" style="color:<% if !user.status %>gray<% end %>">
           <th><%= params[:page]?index + 30*(params[:page].to_i-1):index %></th>
           <td><%= user.name %></td>
           <td><%= user.email %></td>

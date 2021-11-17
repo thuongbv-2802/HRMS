@@ -20,11 +20,6 @@ module SessionsHelper
     def is_admin(user)
         user.position.eql? "admin"
     end
-    
-    # Returns true if postion is leader
-    def is_leader(user)
-        user.position.eql? "leader"
-    end
 
     # Trả về người dùng tương ứng với cookie 
     def current_user

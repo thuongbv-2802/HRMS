@@ -16,7 +16,7 @@
         <%= u.password_field :password_confirmation, class:"form-control" %>
 
         <%= u.label :department_id %>
-        <%= u.select :department_id, Department.all.collect {|x| [x.description, x.id]}, prompt: "Choose one" %>
+        <%= u.select :department_id, Department.all.collect {|dept| [dept.name, dept.id]}, prompt: "Choose one" %>
 
         <%= u.label :home_town %>
         <%= u.text_field :home_town, class: "form-control" %>
@@ -28,11 +28,11 @@
         <%= u.date_field :date_birth, class: "form-control" %>
 
         <%= u.label :position %>
-        <%= u.select :position, options_for_select(['member','leader','admin']),prompt: "Choose one" %>
+        <%= u.select :position, options_for_select(['intern','staff','admin']),prompt: "Choose one" %>
 
         <div class="form-check">
             <%= u.check_box :status, class: "form-check-input" %> 
-            <label class="form-check-label" for="exampleCheck1">Check if employee left</label>
+            <label class="form-check-label" for="exampleCheck1">Precence</label>
         </div>
 
       <%= u.submit "Save", class: "btn btn-primary" %>

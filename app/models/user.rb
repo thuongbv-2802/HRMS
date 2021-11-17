@@ -8,7 +8,7 @@ class User < ApplicationRecord
     validates :name, presence: true, length: { maximum: 50 }
     validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
     validates :password, presence: true, length: { minimum: 6 }
-    validates :position, presence: true, inclusion: ['admin', 'leader', 'member']
+    validates :position, presence: true, inclusion: ['admin', 'staff', 'intern']
     validates :status, inclusion: [true, false]
     # validates :department_id, presence: true
     has_secure_password
@@ -27,7 +27,7 @@ class User < ApplicationRecord
     # Return all record by search name
     def self.search_name(query)
         if query
-            where('name LIKE ?', "%#{query}%")
+            where('name LIKE ? OR phone LIKE ?', "%#{query}%", "%#{query}%")
         else
             all
         end
@@ -52,5 +52,5 @@ class User < ApplicationRecord
 
     def forget
         update_attribute(:remember_digest, nil)
-      end
+    end
 end
