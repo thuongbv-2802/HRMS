@@ -33,7 +33,6 @@ https://drive.google.com/file/d/1t0K3Y_zucoBFBulGQF-DHeNdemleZSoJ/view?usp=shari
 - Memem ber can update position > done
 - Position not reden by user > done
 - Route delete not woking > delete user > reden show (not receive method delete) > done
-- Change passsword 
 - Confirm when delete user 
 - Click department return user, paginate not active > done
 

@@ -25,7 +25,7 @@ User.create!(name:  "HR User",
   email = "example#{n+1}-hr@gmail.com"
   password = "password"
   home_town = "Nam Tu Liem - Ha Noi"
-  phone = "0"+(123456754+n+10).to_s
+  phone = "0"+(123456754+n+10).to_s 
   date_birth = "15/05/2010-#{n}"
   position = "staff"
   User.create!(name: name,
