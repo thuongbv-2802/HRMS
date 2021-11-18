@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def index
     if params[:department]
-      @users = User.search_department(params[:department]).paginate(page: 1, per_page: 30)
+      params[:page]? 1: params[:page]
+      @users = User.search_department(params[:department]).paginate(page: params[:page], per_page: 30)
     else
       @users = User.search_name(params[:query]).paginate(page: params[:page], per_page: 30)
     end
