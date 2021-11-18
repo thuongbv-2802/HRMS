@@ -10,11 +10,11 @@
   </thead>
   <tbody>
     <% @departments.each.with_index(1) do |dept, index| %>
-      <tr class="hover-shadow"  onclick="location.href='users?department=<%= dept.id %>'">
+      <tr class="hover-shadow" onclick="location.href='users?department=<%= dept.id %>'">
           <th><%= index %></th>
           <td><%= dept.name %></td>
           <td><%= dept.description %></td>
-          <td><%= !(User.find_by(department_id:dept.id))? "0": (User.where(department_id:dept.id)).count %></td>
+          <td><%= cout_staff(dept.id) %></td>
           <td style="display: block"><%= link_to "Update", edit_department_path(dept.id) %></td>
       </tr>
     <% end %>

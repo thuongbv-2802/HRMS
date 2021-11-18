@@ -87,6 +87,8 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    data-confirm-modal (1.6.3)
+      railties (>= 3.0)
     erubi (1.10.0)
     execjs (2.8.1)
     faker (2.19.0)
@@ -222,6 +224,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 1.0.0)
   byebug
   capybara (>= 3.26)
+  data-confirm-modal
   faker (~> 2.19.0)
   jbuilder (~> 2.7)
   listen (~> 3.3)

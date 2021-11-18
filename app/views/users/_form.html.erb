@@ -9,11 +9,14 @@
         <%= u.label :email %>
         <%= u.email_field :email, class: "form-control" %>
 
-        <%= u.label :password %>
-        <%= u.password_field :password, class: "form-control" %>
+        <% if update_password %>
 
-        <%= u.label :password_confirmation, "Confirmation" %>
-        <%= u.password_field :password_confirmation, class:"form-control" %>
+          <%= u.label :password %>
+          <%= u.password_field :password, class: "form-control" %>
+
+          <%= u.label :password_confirmation, "Confirmation" %>
+          <%= u.password_field :password_confirmation, class:"form-control" %>
+        <% end %>
 
         <%= u.label :department_id %>
         <%= u.select :department_id, Department.all.collect {|dept| [dept.name, dept.id]}, prompt: "Choose one" %>
@@ -28,7 +31,7 @@
         <%= u.date_field :date_birth, class: "form-control" %>
 
         <%= u.label :position %>
-        <%= u.select :position, options_for_select(['intern','staff','admin']),prompt: "Choose one" %>
+        <%= u.select :position, options_for_select([["staff", "staff"], ["intern", "intern"], ["admin", "admin"]], @user.position), prompt: "Choose one" %>
 
         <div class="form-check">
             <%= u.check_box :status, class: "form-check-input" %> 
@@ -39,3 +42,5 @@
     <% end %>
     </div>
 </div>
+
+<%= render "users/script" %>

@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 $gray-medium: #bbb;
+$blue-light: #337ab7;
+$blue-medium: #095394;
 /* forms */
 
 input, select {
@@ -18,6 +20,10 @@ input, select {
   background-color: $gray-medium;
 }
 
+.hover-shadow:hover .custom-delete input{
+  background-color: $gray-medium;
+}
+
 .input-group{
   float: right;
 }
@@ -30,6 +36,28 @@ input, select {
   float: left;
 }
 
+.custom-delete{
+  float: left;
+  background-color: none;
+}
+
+.custom-delete input{
+  border:none;
+  padding: 0;
+  background-color: white;
+  color: $blue-light;
+  margin: 0;
+}
+
+.hover-shadow td a:hover {
+  text-decoration: none;
+  color: $blue-medium;
+}
+.custom-delete input:hover {
+  background-color: $gray-medium;
+  color: $blue-medium;
+}
+
 /* header user */
 
 .form-search{
@@ -39,3 +67,8 @@ input, select {
 .nav-item:last-child{
   float:right;
 }
+
+h2{
+  text-align:center;
+}
+

@@ -3,8 +3,8 @@
         <%= link_to "HRMS", root_path, id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", departments_path %></li>
             <% if logged_in? %>
+              <li><%= link_to "Department", departments_path %></li>
               <li><%= link_to "User", users_path %></li>
               <li class="dropdown">
                 <a href="#" onclick="loginLogout()" class="dropbtn">

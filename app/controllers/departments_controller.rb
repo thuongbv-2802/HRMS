@@ -18,7 +18,7 @@ class DepartmentsController < ApplicationController
         @department = Department.new(dept_params)
         if @department.save
             flash[:success] = "Create new department is successfully!"
-            redirect_to @department
+            redirect_to departments_path
         else
             render 'new'
         end

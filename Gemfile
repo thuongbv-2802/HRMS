@@ -28,6 +28,8 @@ gem 'will_paginate', '~>  3.3.1'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 # gem 'bootstrap', '~> 5.1.3'
 gem 'bootstrap-sass', '~> 3.4.1'
+# data cofirm model
+gem 'data-confirm-modal'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

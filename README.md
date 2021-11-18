@@ -21,16 +21,24 @@ https://drive.google.com/file/d/1t0K3Y_zucoBFBulGQF-DHeNdemleZSoJ/view?usp=shari
 ## Feature
 
 - Department
-    + update if user is admin
+    + update/create if user is admin
+    + click department > link all user by department
 
 - User
-    + Allow create/update if user is admin/leader
+    + Allow update if user is admin or current user
+    + Delete/create/update if user is admin
 
 ## Bug
 
-- Memem ber can update position 
+- Memem ber can update position > done
+- Position not reden by user > done
+- Route delete not woking > delete user > reden show (not receive method delete) > done
+- Change passsword 
+- Confirm when delete user 
+- Click department return user, paginate not active(custome css)
 
 ## Optimization
 
-- click department return all user of that department > Use onclick(href) > User.search(where(dept_id==..))
+- click department return all user of that department > Use onclick(href) > User.search(where(dept_id==..)) 
+- Code js   
 

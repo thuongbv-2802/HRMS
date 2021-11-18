@@ -1,5 +1,7 @@
-<% provide(:title, 'HRMS') %>
+
 
 <%= render "users/header" %>
 
-<%= render "users/form" %>
+<h2>Create new</h2>
+
+<%= render "users/form", update_password: true  %>

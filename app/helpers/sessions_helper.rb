@@ -52,4 +52,28 @@ module SessionsHelper
         session.delete(:user_id)
         @current_user = nil
     end
+
+    # Return index in table
+    def index_table(index)
+        params[:page] ? index + 30*(params[:page].to_i-1) : index
+    end
+
+    # Row hover in table
+    def row_hover(status)
+        "color:" + "gray" if !status
+    end
+
+    # Return department name
+    def depart_infor(id)
+        Department.find(id).name
+    end
+
+    def cout_staff(depart)
+        # !(User.find_by(department_id:dept.id)) ? "0" : (User.where(department_id:dept.id)).count
+        if !User.find_by(department_id: depart)
+            "0"
+        else 
+            User.where(department_id: depart).count
+        end
+    end
 end
