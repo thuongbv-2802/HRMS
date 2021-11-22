@@ -52,6 +52,9 @@ class DepartmentsController < ApplicationController
         end
 
         def correct_user
-            redirect_to(root_url) unless is_admin(current_user)
+            unless is_admin(current_user)
+                flash[:danger] = "Unable to take action."
+                redirect_to(departments_path) 
+            end
         end
 end

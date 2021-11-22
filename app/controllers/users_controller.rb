@@ -64,7 +64,11 @@ class UsersController < ApplicationController
     end
 
     def update_params
-      params.require(:user).permit(:name, :email, :phone, :home_town, :date_birth, :position, :status, :department_id)
+      if is_admin(current_user)
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :home_town, :date_birth, :position, :status, :department_id)
+      else 
+        params.require(:user).permit(:name, :email, :phone, :home_town, :date_birth)
+      end
     end
 
     # Confirms a logged-in user.
@@ -78,12 +82,18 @@ class UsersController < ApplicationController
     # Confirms the correct user.
     def correct_user
       @user = find_user
-      redirect_to(root_url) unless current_user?(@user) || is_admin(current_user)
+      unless current_user?(@user) || is_admin(current_user)
+        flash[:danger] = "Unable to take action."
+        redirect_to(users_path)
+      end
     end
 
     # Confirms an admin user.
     def admin_user
-      redirect_to(root_url) unless is_admin(current_user)
+      unless is_admin(current_user)
+        flash[:danger] = "Unable to take action."
+        redirect_to(users_path)
+      end
     end
 
     def find_user

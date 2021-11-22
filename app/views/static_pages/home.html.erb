@@ -6,6 +6,7 @@
   <h2>
     This is the home page 
   </h2>
-
-  <%= link_to "Sign in now!", login_path, class: "btn btn-lg btn-primary" %>
+  <% unless logged_in? %> 
+    <%= link_to "Login now!", login_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>

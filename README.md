@@ -35,10 +35,11 @@ https://drive.google.com/file/d/1t0K3Y_zucoBFBulGQF-DHeNdemleZSoJ/view?usp=shari
 - Route delete not woking > delete user > reden show (not receive method delete) > done
 - Confirm when delete user 
 - Click department return user, paginate not active > done
+- Staff update, alert if update fail > done
+- Staff can't update position > done
 
 ## Optimization
 
 - click department return all user of that department > Use onclick(href) > User.search(where(dept_id==..)) 
 - Code js   
-
-
+- Nested route
